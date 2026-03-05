@@ -14,11 +14,17 @@ Content-Type: application/json
 
 ###
 
-PUT http://localhost:3000/usuarios
+PUT http://localhost:3000/usuarios/1
 Content-Type: application/json
 
 {
     "nome": "Puta",
-    "senha": "1234",
-    "id": "2"
+    "senha": "1234"
 }
+
+###
+
+DELETE  http://localhost:3000/usuarios/2
+Content-Type: application/json
+
+{}

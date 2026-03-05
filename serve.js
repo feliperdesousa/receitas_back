@@ -22,10 +22,17 @@ servidor.post('/usuarios', async (request, reply) => {
     return 'Usuário Cadastrado!'
 });
 
-servidor.put('/usuarios', async (request, reply) => {
+servidor.put('/usuarios/:id', async (request, reply) => {
     const body = request.body;
-    const resultado = await sql.query('update usuarios set nome = $1, senha = $2 where id = $3', [body.nome, body.senha, body.id]);
+    const id = request.params.id;
+    const resultado = await sql.query('update usuarios set nome = $1, senha = $2 where id = $3', [body.nome, body.senha, id]);
     return 'Usuário Alterado!'
+});
+
+servidor.delete('/usuarios/:id', async (request, reply) => {
+    const id = request.params.id;
+    const resultado = await sql.query('delete from usuarios where id = $1', [id]);
+    return 'Usuário Deletado'
 });
 
 servidor.listen({
