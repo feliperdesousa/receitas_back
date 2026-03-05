@@ -14,7 +14,7 @@ Content-Type: application/json
 
 ###
 
-PUT http://localhost:3000/usuarios/1
+PUT http://localhost:3000/usuarios/5
 Content-Type: application/json
 
 {
@@ -24,4 +24,4 @@ Content-Type: application/json
 
 ###
 
-DELETE  http://localhost:3000/usuarios/3
+DELETE  http://localhost:3000/usuarios/4

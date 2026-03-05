@@ -18,6 +18,9 @@ servidor.get('/usuarios', async () => {
 
 servidor.post('/usuarios', async (request, reply) => {
     const body = request.body;
+    if (!body || !body.nome || !body.senha) {
+        return reply.status(400).send({message:'Nome e Senha são obrigatórios.'})
+    };
     const resultado = await sql.query('insert into usuarios (nome, senha) values ($1, $2)', [body.nome, body.senha]);
     return 'Usuário Cadastrado!'
 });
@@ -25,12 +28,18 @@ servidor.post('/usuarios', async (request, reply) => {
 servidor.put('/usuarios/:id', async (request, reply) => {
     const body = request.body;
     const id = request.params.id;
+    if (!body || !body.nome || !body.senha || !id) {
+        return reply.status(400).send({message:'Nome, Senha e Id são obrigatórios.'})
+    };
     const resultado = await sql.query('update usuarios set nome = $1, senha = $2 where id = $3', [body.nome, body.senha, id]);
     return 'Usuário Alterado!'
 });
 
 servidor.delete('/usuarios/:id', async (request, reply) => {
     const id = request.params.id;
+    if (!id) {
+        return reply.status(400).send({message:'Id é obrigatório.'})
+    };
     const resultado = await sql.query('delete from usuarios where id = $1', [id]);
     console.log(resultado);
     reply.status(200).send({message: 'Usuário Deletado!'})
