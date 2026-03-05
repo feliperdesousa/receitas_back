@@ -32,6 +32,7 @@ servidor.put('/usuarios/:id', async (request, reply) => {
 servidor.delete('/usuarios/:id', async (request, reply) => {
     const id = request.params.id;
     const resultado = await sql.query('delete from usuarios where id = $1', [id]);
+    console.log(resultado);
     reply.status(200).send({message: 'Usuário Deletado!'})
 });
 
