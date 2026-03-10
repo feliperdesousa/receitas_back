@@ -22,7 +22,7 @@ servidor.post('/usuarios', async (request, reply) => {
         return reply.status(400).send({message:'Nome e Senha são obrigatórios.'})
     };
     const resultado = await sql.query('insert into usuarios (nome, senha) values ($1, $2)', [body.nome, body.senha]);
-    return 'Usuário Cadastrado!'
+    reply.status(201).send({message: 'Usuário criado!'})
 });
 
 servidor.put('/usuarios/:id', async (request, reply) => {
@@ -32,7 +32,7 @@ servidor.put('/usuarios/:id', async (request, reply) => {
         return reply.status(400).send({message:'Nome, Senha e Id são obrigatórios.'})
     };
     const resultado = await sql.query('update usuarios set nome = $1, senha = $2 where id = $3', [body.nome, body.senha, id]);
-    return 'Usuário Alterado!'
+    reply.status(201).send({message: 'Usuário alterado!'})
 });
 
 servidor.delete('/usuarios/:id', async (request, reply) => {
