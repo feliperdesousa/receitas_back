@@ -11,6 +11,22 @@ const sql = new Pool({
 });
 
 
+
+servidor.post('/login', async (request, reply) => {
+    const body = request.body;
+    if (!body || !body.email || !body.senha) {
+        reply.status(400).send({erro: "Email e senha obrigatórios!"})
+    };
+    const resultado = await sql.query('select * from usuarios where email = $1 and senha = $2', [body.email, body.senha]);
+    if (resultado.rows.length === 0) {
+        reply.status(401).send({message: 'Usuário ou senha inválidos!', login: false})
+    } else if (resultado.rows.length === 1) {
+        reply.status(200).send({message: 'Usuário logado', login: true})
+    }
+});
+
+
+
 servidor.get('/usuarios', async () => {
     const resultado = await sql.query('select * from usuarios');
     return resultado.rows
