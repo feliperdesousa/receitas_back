@@ -1,7 +1,8 @@
 create table usuarios (
 	id serial primary key,
 	nome varchar(255),
-	senha varchar(255),
+	email varchar(255) not null unique,
+	senha varchar(255) not null,
 	ativo boolean default true,
 	criado_em timestamp default current_timestamp
 );

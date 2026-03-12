@@ -18,20 +18,20 @@ servidor.get('/usuarios', async () => {
 
 servidor.post('/usuarios', async (request, reply) => {
     const body = request.body;
-    if (!body || !body.nome || !body.senha) {
-        return reply.status(400).send({message:'Nome e Senha são obrigatórios.'})
+    if (!body || !body.nome || !body.senha || !body.email) {
+        return reply.status(400).send({message:'Nome, Email e Senha são obrigatórios.'})
     };
-    const resultado = await sql.query('insert into usuarios (nome, senha) values ($1, $2)', [body.nome, body.senha]);
+    const resultado = await sql.query('insert into usuarios (nome, email, senha) values ($1, $2, $3)', [body.nome, body.email, body.senha]);
     reply.status(201).send({message: 'Usuário criado!'})
 });
 
 servidor.put('/usuarios/:id', async (request, reply) => {
     const body = request.body;
     const id = request.params.id;
-    if (!body || !body.nome || !body.senha || !id) {
-        return reply.status(400).send({message:'Nome, Senha e Id são obrigatórios.'})
+    if (!body || !body.nome || !body.senha || !body.email || !id) {
+        return reply.status(400).send({message:'Nome, Email, Senha e Id são obrigatórios.'})
     };
-    const resultado = await sql.query('update usuarios set nome = $1, senha = $2 where id = $3', [body.nome, body.senha, id]);
+    const resultado = await sql.query('update usuarios set nome = $1, email = $2, senha = $3 where id = $4', [body.nome, body.email, body.senha, id]);
     reply.status(201).send({message: 'Usuário alterado!'})
 });
 

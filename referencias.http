@@ -9,16 +9,18 @@ Content-Type: application/json
 
 {
     "nome": "Marcos",
+    "email": "marcos@gmail.com",
     "senha": "1234"
 }
 
 ###
 
-PUT http://localhost:3000/usuarios/5
+PUT http://localhost:3000/usuarios/1
 Content-Type: application/json
 
 {
-    "nome": "Puta",
+    "nome": "adm",
+    "email": "adm@gmail.com",
     "senha": "1234"
 }
 
