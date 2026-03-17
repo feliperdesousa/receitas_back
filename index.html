@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receitas</title>
+</head>
+<body>
+    <h1>Aprendendo Fetch</h1>
+
+    <script>
+        async function buscarUsuario() {
+            const usuarios = await fetch('http://localhost:3000/usuarios');
+            const resultado = await usuarios.json();
+            console.log(resultado);
+        };
+
+        buscarUsuario()
+    </script>
+</body>
+</html>
