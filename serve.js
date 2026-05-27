@@ -5,7 +5,8 @@ import cors from '@fastify/cors'
 const servidor = Fastify();
 
 servidor.register(cors, {
-    origin: "*"
+    origin: "*",
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
 });
 
 const sql = new Pool({
